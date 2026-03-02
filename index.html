@@ -1,1 +1,376 @@
-<strong>Hola Mundo!</strong>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watts Up</title>  
+  <link rel="icon" type="image/png" href="favicon.svg">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+  <style>    
+    :root {
+      --amarillo:       #F5C518;
+      --amarillo-hover: #D9AE0D;
+      --negro:          #111111;
+      --gris-oscuro:    #2E2E2E;
+      --gris-medio:     #6B6B6B;
+      --gris-claro:     #E4E4E4;
+      --fondo:          #F4F4F2;
+      --blanco:         #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background-color: var(--fondo);
+      color: var(--negro);
+      margin: 0;
+    }
+
+    /* ── HEADER ───────────────────────────────────────── */
+    header {
+      background-color: var(--negro);
+      border-bottom: 4px solid var(--amarillo);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+    }
+   
+     .logo-card {
+      width: 300px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;  
+    }
+
+    .brand-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.12em;
+      color: #FFFFFF;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .brand-title span { color: var(--amarillo); }
+
+    /* ── HERO STRIP ───────────────────────────────────── */
+    .hero-strip {
+      background-color: var(--amarillo);
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 14px,
+        rgba(0,0,0,0.045) 14px,
+        rgba(0,0,0,0.045) 28px
+      );
+    }
+
+    .hero-strip h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      letter-spacing: 0.1em;
+      color: var(--negro);
+      margin-bottom: 0.4rem;
+      position: relative;
+    }
+
+    .hero-strip p {
+      color: var(--gris-oscuro);
+      font-size: 1rem;
+      margin: 0;
+      position: relative;
+    }
+
+    /* ── CARDS SECTION ────────────────────────────────── */
+    .cards-section { padding: 3.5rem 1.5rem 4rem; }
+
+    .section-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.2em;
+      color: var(--gris-medio);
+      border-left: 4px solid var(--amarillo);
+      padding-left: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Card base */
+    .card-custom {
+      background-color: var(--blanco);
+      border: 1px solid var(--gris-claro);
+      border-top: 4px solid var(--amarillo);
+      border-radius: 8px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card-custom:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body-custom {
+      padding: 1.6rem 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--amarillo);
+      line-height: 1;
+      opacity: 0.4;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-custom h5 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      color: var(--negro);
+      margin-bottom: 0.7rem;
+    }
+
+    .card-custom p {
+      font-size: 0.875rem;
+      color: var(--gris-medio);
+      line-height: 1.72;
+      flex-grow: 1;
+      margin-bottom: 1.3rem;
+    }
+
+    .btn-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background-color: var(--negro);
+      color: var(--amarillo);
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      padding: 0.55rem 1.1rem;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, gap 0.2s ease;
+      width: fit-content;
+    }
+
+    .btn-card:hover {
+      background-color: var(--amarillo);
+      color: var(--negro);
+      gap: 0.7rem;
+    }
+
+    /* ── VIDEO EMBED ──────────────────────────────────── */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #000;
+      flex-shrink: 0;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ── IMAGE ────────────────────────────────────────── */
+    .card-img-top-custom {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background-color: var(--negro);
+      border-top: 4px solid var(--amarillo);
+      text-align: center;
+      padding: 1.3rem;
+      font-size: 0.8rem;
+      color: var(--gris-medio);
+    }
+
+    footer span { color: var(--amarillo); }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────── -->
+  <header>
+    <div class="header-inner container-fluid" style="display: flex; align-items: center; justify-content: space-between;">     
+        <div class="logo-card">
+            <img src="watts_up_logo.svg"/>   
+        </div>
+        
+        <div class="social-links" style="display: flex; gap: 24px; align-items: center;">
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@WattsUpEdu" target="_blank" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span style="font-size: 14px; font-weight: 500;">
+                    youtube
+                </span>
+            </a>
+            
+            <!-- iVoox -->
+            <a href="https://www.ivoox.com/podcast-watts-up_sq_f13119458_1.html" target="_blank" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8zm0 3a5 5 0 1 0 0 10A5 5 0 0 0 12 7zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                </svg>
+                <span style="font-size: 14px; font-weight: 500;">ivoox</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+  <!-- ── HERO ───────────────────────────────────────── -->
+  <section class="hero-strip">
+    <h2>Nuestro Contenido</h2>
+    <p>Recursos multimedia</p>
+  </section>
+
+  <!-- ── CARDS ──────────────────────────────────────── -->
+  <main class="cards-section">
+    <div class="container">
+      <p class="section-label">SECCIONES</p>
+      <div class="row g-4">
+
+        <!-- 01 — Texto -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card-custom">
+            <div class="card-body-custom">
+              <div class="card-number">01</div>
+              <h5>Presentación: La energía fundamentos teoricos</h5>
+              <p>
+                  La energía es la capacidad de los cuerpos para generar transformaciones, manifestándose de diversas formas: eléctrica, térmica, cinética y potencial. Rige bajo el principio de conservación, que establece que su cantidad total no varía, solo cambia de forma. Su estudio cuantitativo, mediante ecuaciones específicas, permite predecir el comportamiento de sistemas físicos en contextos cotidianos y tecnológicos.
+                  <br><br>
+                  El siguiente recurso profundiza sobre el conocimiento teórico requerido para entender el concepto de la energía
+              </p>
+              <a href="FundamentosTeoricos.pdf" target="_blank" class="btn-card">Ver Presentación<i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 — Texto -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card-custom">
+            <div class="card-body-custom">
+              <div class="card-number">02</div>
+              <h5>LA ENERGÍA EN ZONAS DE ESCASOS RECURSOS: DESAFÍOS Y SOLUCIONES SOSTENIBLES</h5>
+              <p>                 
+                 En esta sesión abordaremos una realidad que afecta a millones de personas en el mundo, 
+                 su impacto a nivel social y algunas posibles soluciones a esta problematica.
+                 <br><br>
+                 Para ampliar esta informacion y participar con tu opinion dirigete a nuestro blog
+              </p>
+              <a href="https://wattsupedu.blogspot.com/2026/03/watts-up.html" target="_blank" class="btn-card">Leer Artículo<i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 — VIDEO (YouTube embed) -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card-custom">
+             <div class="card-body-custom">
+              <div class="card-number">03</div>
+              <h5>Energia renovable y no renovable</h5>
+              <p>
+              La diferencia principal es que las energías renovables (como la solar o eólica) provienen de fuentes naturales inagotables que se regeneran constantemente, mientras que las no renovables (como el petróleo o el carbón) existen en reservas limitadas que se agotan con el uso y tardan millones de años en formarse.
+              <br> <br>
+                Visita nuestro canal de youtube para profundizar sobre las energias renovables y no renovables.             
+              </p>
+              <a href="https://youtu.be/QISjm8_0NZg" target="_blank" class="btn-card">Ver Video<i class="bi bi-play-circle"></i></a>
+              <br>
+              <a href="EnergiaRenovable_NoRenovable.pdf" target="_blank" class="btn-card">Presentacion del video<i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 — IMAGEN -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card-custom">           
+            <div class="card-body-custom">
+              <div class="card-number">04</div>
+              <h5>TIPOS DE ENERGIA</h5>
+              <p>
+                Existen distintas formas de obtener la energía las cuales estan abordadas en la siguiente infografía.
+              </p>
+              <a href="INFOGRAFIA.png" target="_blank" class="btn-card">Ver Infografía <i class="bi bi-images"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 — Texto -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card-custom">
+            <div class="card-body-custom">
+              <div class="card-number">05</div>
+              <h5>Edison vs Tesla</h5>
+              <p>
+                Han existido muchas rivalidades en la historia de la ciencia y el concepto de la energía 
+                no ha sido ajena a estas a continuación escucha nuestro podcast para conocer como en el 
+                siglo XIX la rivalidad de Edison y Tesla dibujo la forma en como se realiza la distribución 
+                de la energía hasta nuestros días.
+              </p>
+              <a href="https://www.ivoox.com/edison-vs-tesla-audios-mp3_rf_169307780_1.html" target="_blank" class="btn-card">Escuchar<i class="bi bi-cpu"></i></a>
+            </div>
+          </div>
+        </div>        
+
+      </div><!-- /row -->
+    </div><!-- /container -->
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer>
+    © 2026 <span>Watts Up?</span> — Todos los derechos reservados.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
